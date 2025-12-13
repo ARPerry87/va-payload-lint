@@ -87,10 +87,12 @@ This allows you to run `va-payload-lint` instead of `node dist/index.js`.
 ### Option A (recommended): validate directly from clipboard
 
 This is the **primary workflow** and matches how payloads are copied from
-Chrome DevTools → Network tab.
+Chrome DevTools → Network tab. This can be run from either vets-website or the directory for this tool.
 
 ```bash
-pbpaste | node dist/index.js
+ pbpaste | python3 -c 'import sys, json; obj=json.load(sys.stdin); print(json.dumps(obj.get("formData", obj)))' \
+  | node /Path/To/YourFile/va-payload-lint/dist/index.js \
+  --schema-file ./node_modules/vets-json-schema/dist/21-526EZ-ALLCLAIMS-schema.json
 ```
 
 If you ran `npm link`:
@@ -102,7 +104,8 @@ pbpaste | va-payload-lint
 With key-casing warnings:
 
 ```bash
-pbpaste | node dist/index.js --expect-case snake
+pbpaste | node /Path/To/YourFile/va-payload-lint/dist/index.js \
+  --schema-file ./node_modules/vets-json-schema/dist/21-526EZ-ALLCLAIMS-schema.json --expect-case snake
 ```
 
 ---
@@ -187,6 +190,6 @@ In this case, I want 526EZ.
 npm ci
 npm run build
  pbpaste | python3 -c 'import sys, json; obj=json.load(sys.stdin); print(json.dumps(obj.get("formData", obj)))' \
-  | node /Users/aliciaperry/VA_Code/va-payload-lint/dist/index.js \
+  | node /Path/To/YourFile/va-payload-lint/dist/index.js \
   --schema-file ./node_modules/vets-json-schema/dist/21-526EZ-ALLCLAIMS-schema.json
 ```

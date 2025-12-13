@@ -179,8 +179,14 @@ node dist/index.js --no-cache
 
 ## TL;DR
 
+Copy and have in your paste buffer the payload you are trying to compare.
+To do this, in your browser, go to: Inspect > Network > Response > Select the Service you want the payload of.
+In this case, I want 526EZ.
+
 ```bash
 npm ci
 npm run build
-pbpaste | node dist/index.js
+ pbpaste | python3 -c 'import sys, json; obj=json.load(sys.stdin); print(json.dumps(obj.get("formData", obj)))' \
+  | node /Users/aliciaperry/VA_Code/va-payload-lint/dist/index.js \
+  --schema-file ./node_modules/vets-json-schema/dist/21-526EZ-ALLCLAIMS-schema.json
 ```

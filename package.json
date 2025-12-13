@@ -1,0 +1,28 @@
+{
+  "name": "va-payload-lint",
+  "version": "0.1.0",
+  "description": "Standalone validator for VA Form 526 submission payloads",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "va-payload-lint": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "node --loader ts-node/esm src/index.ts",
+    "test": "vitest",
+    "test:run": "vitest run"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "chalk": "^5.4.1",
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3",
+    "vitest": "^4.0.15"
+  }
+}

@@ -193,3 +193,5 @@ npm run build
   | node /Path/To/YourFile/va-payload-lint/dist/index.js \
   --schema-file ./node_modules/vets-json-schema/dist/21-526EZ-ALLCLAIMS-schema.json
 ```
+
+This tool is also safe from the current Sha1-Hulud attack. Should any more exploits be found, please open an issue and the publisher will work to quickly remediate the problem. 
